@@ -34,7 +34,7 @@ public class DocumentHandler extends CordovaPlugin {
 			final JSONObject arg_object = args.getJSONObject(0);
 			final String url = arg_object.getString("url");
 			System.out.println("Found: " + url);
-
+			public static String fileName = url.substring(url.lastIndexOf("+") + 1)
 			// start async download task
 			new FileDownloaderAsyncTask(callbackContext, url).execute();
 
@@ -73,8 +73,13 @@ public class DocumentHandler extends CordovaPlugin {
 
 			InputStream reader = conn.getInputStream();
 
-			String extension = MimeTypeMap.getFileExtensionFromUrl(url);
-			File f = File.createTempFile(FILE_PREFIX, "." + extension,
+			// String extension = MimeTypeMap.getFileExtensionFromUrl(url);
+			//harcoded to use pdf
+			if( fileName != null){
+				String fileName = "attachment";
+			}
+			String extension = "pdf";
+			File f = File.createTempFile(fileName, "." + extension,
 					null);
 			// make sure the receiving app can read this file
 			f.setReadable(true, false);
