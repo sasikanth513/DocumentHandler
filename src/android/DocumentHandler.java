@@ -79,7 +79,7 @@ public class DocumentHandler extends CordovaPlugin {
 			fileName = fileName.substring(0, fileName.length() - 5);
 			Context context2 = cordova.getActivity().getApplicationContext();
 			File f = File.createTempFile(fileName, "." + extension,
-					context2.getExternalCacheDir(););
+					context2.getExternalCacheDir());
 			// make sure the receiving app can read this file
 			f.setReadable(true, false);
 			FileOutputStream outStream = new FileOutputStream(f);
