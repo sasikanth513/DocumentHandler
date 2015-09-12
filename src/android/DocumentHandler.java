@@ -149,7 +149,8 @@ public class DocumentHandler extends CordovaPlugin {
 			Context context = cordova.getActivity().getApplicationContext();
 
 			// get mime type of file data
-			String mimeType = getMimeType(url);
+			// String mimeType = getMimeType(url);
+			String mimeType = "application/pdf";
 			if (mimeType == null) {
 				callbackContext.error(ERROR_UNKNOWN_ERROR);
 				return;
