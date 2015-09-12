@@ -20,8 +20,13 @@
           [weakSelf.commandDelegate sendPluginResult:commandResult callbackId:command.callbackId];
           return;
         }
-
-        NSString* fileName = [url lastPathComponent];
+        // NSString *url = @"http://www.google.com/a.pdf";
+        // NSArray *parts = [url componentsSeparatedByString:@"/"];
+        // NSString *filename = [parts lastObject];
+        //Original statement
+        // NSString* fileName = [url lastPathComponent];
+        NSArray *parts = [url componentsSeparatedByString:@"+"];
+        NSString *fileName = [parts lastObject];
         NSString* path = [NSTemporaryDirectory() stringByAppendingPathComponent: fileName];
         NSURL* tmpFileUrl = [[NSURL alloc] initFileURLWithPath:path];
         [dat writeToURL:tmpFileUrl atomically:YES];
