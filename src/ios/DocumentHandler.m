@@ -33,7 +33,7 @@
             cntr.dataSource = weakSelf;
 
             UIViewController* root = [[[UIApplication sharedApplication] keyWindow] rootViewController];
-            [root presentViewController:cntr animated:NO completion:nil];
+            [root presentViewController:cntr animated:YES completion:nil];
         });
 
 
@@ -51,11 +51,7 @@
 
 - (id <QLPreviewItem>) previewController: (QLPreviewController *) controller previewItemAtIndex: (NSInteger) index
 {
-  if let navigationController = self.navigationController {
-      return navigationController
-  } else {
-      return self
-  }
+    return self;
 }
 
 #pragma mark - QLPreviewItem protocol
