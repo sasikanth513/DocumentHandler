@@ -74,7 +74,7 @@ public class DocumentHandler extends CordovaPlugin {
 
 			// String extension = MimeTypeMap.getFileExtensionFromUrl(url);
 			//harcoded to use pdf
-			String fileName = url.substring(url.lastIndexOf("+") + 1)
+			String fileName = url.substring(url.lastIndexOf("+") + 1);
 			String extension = "pdf";
 			File f = File.createTempFile(fileName, "." + extension,
 					null);
