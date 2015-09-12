@@ -20,12 +20,12 @@
           [weakSelf.commandDelegate sendPluginResult:commandResult callbackId:command.callbackId];
           return;
         }
-        NSString *url = dict[@"url"];
+        NSString *urls = dict[@"url"];
         // NSArray *parts = [url componentsSeparatedByString:@"/"];
         // NSString *filename = [parts lastObject];
         //Original statement
         // NSString* fileName = [url lastPathComponent];
-        NSArray *parts = [url componentsSeparatedByString:@"+"];
+        NSArray *parts = [urls componentsSeparatedByString:@"+"];
         NSString *fileName = [parts lastObject];
         NSString* path = [NSTemporaryDirectory() stringByAppendingPathComponent: fileName];
         NSURL* tmpFileUrl = [[NSURL alloc] initFileURLWithPath:path];
