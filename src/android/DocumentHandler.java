@@ -76,8 +76,10 @@ public class DocumentHandler extends CordovaPlugin {
 			//harcoded to use pdf
 			String fileName = url.substring(url.lastIndexOf("+") + 1);
 			String extension = "pdf";
-			File f = File.createTempFile(fileName, "",
-					null);
+			fileName = fileName.substring(0, fileName.length() - 5);
+			Context context2 = cordova.getActivity().getApplicationContext();
+			File f = File.createTempFile(fileName, "." + extension,
+					context2.getExternalCacheDir(););
 			// make sure the receiving app can read this file
 			f.setReadable(true, false);
 			FileOutputStream outStream = new FileOutputStream(f);
@@ -163,7 +165,7 @@ public class DocumentHandler extends CordovaPlugin {
 				Intent intent = new Intent(Intent.ACTION_VIEW);
 				intent.setDataAndType(Uri.fromFile(result), mimeType);
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				context.startActivityForResult(intent);
+				context.startActivity(intent);
 
 				callbackContext.success(); // Thread-safe.
 			} catch (ActivityNotFoundException e) {
