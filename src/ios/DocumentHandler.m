@@ -20,7 +20,7 @@
           [weakSelf.commandDelegate sendPluginResult:commandResult callbackId:command.callbackId];
           return;
         }
-        // NSString *url = @"http://www.google.com/a.pdf";
+        NSString *url = dict[@"url"];
         // NSArray *parts = [url componentsSeparatedByString:@"/"];
         // NSString *filename = [parts lastObject];
         //Original statement
