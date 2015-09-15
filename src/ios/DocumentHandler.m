@@ -1,5 +1,6 @@
 
 #import "DocumentHandler.h"
+#import "AppDelegate.h"
 
 @implementation DocumentHandler
 
