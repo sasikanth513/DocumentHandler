@@ -3,6 +3,7 @@
 
 @implementation DocumentHandler
 
+UINavigationController *navCntrl;
 - (void)HandleDocumentWithURL:(CDVInvokedUrlCommand*)command;
 {
     __weak DocumentHandler* weakSelf = self;
@@ -36,9 +37,13 @@
             QLPreviewController* cntr = [[QLPreviewController alloc] init];
             cntr.delegate = weakSelf;
             cntr.dataSource = weakSelf;
-
-            UIViewController* root = [[[UIApplication sharedApplication] keyWindow] rootViewController];
-            [root presentViewController:cntr animated:YES completion:nil];
+            
+            AppDelegate* root = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonTapped:)];
+            
+            navCntrl=[[UINavigationController alloc] initWithRootViewController:cntr];
+            cntr.navigationItem.leftBarButtonItem=done;
+            [root.viewController.view addSubview:navCntrl.view];
         });
 
 
@@ -61,9 +66,13 @@
 
 #pragma mark - QLPreviewItem protocol
 
-- (NSURL*)previewItemURL
-{
+- (NSURL*)previewItemURL{
     return self.fileUrl;
 }
+
+- (void)doneButtonTapped:(id)sender {
+    [navCntrl.view removeFromSuperview];
+}
+
 
 @end
