@@ -44,8 +44,8 @@ UINavigationController *navCntrl;
             
             navCntrl=[[UINavigationController alloc] initWithRootViewController:cntr];
             cntr.navigationItem.leftBarButtonItem=done;
-            [root.viewController addChildViewController:navCntrl];
-            [root.viewController.view addSubview:navCntrl.view];
+            //[root.viewController addChildViewController:navCntrl];
+            [root.viewController  presentViewController:navCntrl animated:YES completion:nil];
         });
 
 
@@ -73,7 +73,7 @@ UINavigationController *navCntrl;
 }
 
 - (void)doneButtonTapped:(id)sender {
-    [navCntrl.view removeFromSuperview];
+    [navCntrl dismissViewControllerAnimated:YES completion:nil];
 }
 
 
