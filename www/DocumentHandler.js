@@ -7,7 +7,7 @@ var myFunc = function (
       failureHandler, 
       "DocumentHandler", 
       "HandleDocumentWithURL", 
-      [{"url" : url},{"fileName":fileName}]);
+      [{"url" : url,"fileName":fileName}]);
 };
 
 window.handleDocumentWithURL = myFunc;
