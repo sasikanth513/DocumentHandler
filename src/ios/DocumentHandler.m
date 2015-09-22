@@ -27,8 +27,13 @@ UINavigationController *navCntrl;
         // NSString *filename = [parts lastObject];
         //Original statement
         // NSString* fileName = [url lastPathComponent];
-        NSArray *parts = [urls componentsSeparatedByString:@"+"];
-        NSString *fileName = [parts lastObject];
+        NSString *fileName;
+        if(dict[@"fileName"]==nil){
+            NSArray *parts = [urls componentsSeparatedByString:@"+"];
+            fileName = [parts lastObject];
+        }else{
+            fileName= dict[@"fileName"];
+        }
         NSString* path = [NSTemporaryDirectory() stringByAppendingPathComponent: fileName];
         NSURL* tmpFileUrl = [[NSURL alloc] initFileURLWithPath:path];
         [dat writeToURL:tmpFileUrl atomically:YES];

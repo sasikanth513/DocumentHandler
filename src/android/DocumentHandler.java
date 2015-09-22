@@ -33,9 +33,10 @@ public class DocumentHandler extends CordovaPlugin {
 			// parse arguments
 			final JSONObject arg_object = args.getJSONObject(0);
 			final String url = arg_object.getString("url");
+			final String fileName = arg_object.getString("fileName");
 			System.out.println("Found: " + url);
 			// start async download task
-			new FileDownloaderAsyncTask(callbackContext, url).execute();
+			new FileDownloaderAsyncTask(callbackContext, url,fileName).execute();
 
 			return true;
 		}
@@ -51,7 +52,7 @@ public class DocumentHandler extends CordovaPlugin {
 	 * @param url
 	 * @return
 	 */
-	private File downloadFile(String url, CallbackContext callbackContext) {
+	private File downloadFile(String url, CallbackContext callbackContext,String fileName) {
 
 		try {
 			// get an instance of a cookie manager since it has access to our
@@ -74,9 +75,9 @@ public class DocumentHandler extends CordovaPlugin {
 
 			// String extension = MimeTypeMap.getFileExtensionFromUrl(url);
 			//harcoded to use pdf
-			String fileName = url.substring(url.lastIndexOf("+") + 1);
+			//String fileName = url.substring(url.lastIndexOf("+") + 1);
 			String extension = "pdf";
-			fileName = fileName.substring(0, fileName.length() - 5);
+			fileName = fileName.substring(0, fileName.length() - 4);
 			Context context2 = cordova.getActivity().getApplicationContext();
 			File f = File.createTempFile(fileName, "." + extension,
 					context2.getExternalCacheDir());
@@ -130,17 +131,19 @@ public class DocumentHandler extends CordovaPlugin {
 
 		private final CallbackContext callbackContext;
 		private final String url;
+		private final String fileName;
 
 		public FileDownloaderAsyncTask(CallbackContext callbackContext,
-																	 String url) {
+																	 String url,String fileName) {
 			super();
 			this.callbackContext = callbackContext;
 			this.url = url;
+			this.fileName=fileName;
 		}
 
 		@Override
 		protected File doInBackground(Void... arg0) {
-			return downloadFile(url, callbackContext);
+			return downloadFile(url, callbackContext,fileName);
 		}
 
 		@Override

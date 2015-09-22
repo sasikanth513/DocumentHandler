@@ -1,13 +1,13 @@
 var myFunc = function (
   successHandler, 
   failureHandler, 
-  url) {
+  url,fileName) {
   cordova.exec(
       successHandler, 
       failureHandler, 
       "DocumentHandler", 
       "HandleDocumentWithURL", 
-      [{"url" : url}]);
+      [{"url" : url},{"fileName":fileName}]);
 };
 
 window.handleDocumentWithURL = myFunc;
