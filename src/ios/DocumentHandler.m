@@ -49,8 +49,8 @@ UINavigationController *navCntrl;
             
             navCntrl=[[UINavigationController alloc] initWithRootViewController:cntr];
             cntr.navigationItem.leftBarButtonItem=done;
-            //[root.viewController addChildViewController:navCntrl];
-            [root.viewController  presentViewController:navCntrl animated:YES completion:nil];
+            [root.viewController addChildViewController:navCntrl];
+            //[root.viewController  presentViewController:navCntrl animated:YES completion:nil];
         });
 
 
